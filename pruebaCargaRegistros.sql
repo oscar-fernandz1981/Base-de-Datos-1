@@ -4,46 +4,46 @@ create database Pruebas;
 use Pruebas;
 
 Create table provincia (idprovincia int primary key, 
-					    descripcion varchar(50),
-						km2 int,
-						cantdptos int,
-						poblacion int,
-						nomcabe varchar(50))
+			descripcion varchar(50),
+			km2 int,
+			cantdptos int,
+			poblacion int,
+			nomcabe varchar(50))
 go
 -------------------
 
 Create table localidad (idprovincia int, 
-						idlocalidad int, 
-					    descripcion varchar(50),
-					    Constraint PK_localidad PRIMARY KEY (idprovincia, idlocalidad),
-						Constraint FK_localidad_pcia FOREIGN KEY (idprovincia)  REFERENCES provincia(idprovincia)						 					     					     					     				     					     
+			idlocalidad int, 
+			descripcion varchar(50),
+			Constraint PK_localidad PRIMARY KEY (idprovincia, idlocalidad),
+			Constraint FK_localidad_pcia FOREIGN KEY (idprovincia)  REFERENCES provincia(idprovincia)						 					     					     					     				     					     
 						)
 go
 -------------------
 
-Create table zona		(idzona int identity primary key, 
-					    descripcion varchar(50))
+Create table zona (idzona int identity primary key, 
+         	    descripcion varchar(50))
 go
 -------------------
 
-Create table conserje	(idconserje int identity primary key, 
-					     apeynom varchar(50),
-					     tel varchar(20),
-						 fechnac datetime,
-					     estciv varchar(1)  NULL default ('S') 
-						 CONSTRAINT CK_estadocivil CHECK (estciv IN ('S', 'C','D','O')),
-							 	)
+Create table conserje (idconserje int identity primary key, 
+			apeynom varchar(50),
+			tel varchar(20),
+			fechnac datetime,
+			estciv varchar(1)  NULL default ('S') 
+			CONSTRAINT CK_estadocivil CHECK (estciv IN ('S', 'C','D','O')),
+			)
 go
 -------------------
 
-Create table administrador	(idadmin int identity primary key, 
-				 apeynom varchar(50),
-				 viveahi varchar(1)  NULL default ('N') 
-				 CONSTRAINT CK_habitante_viveahi CHECK (viveahi IN ('S', 'N')),
-				 tel varchar(20),
-				 sexo varchar(1)  NOT NULL 
-				 CONSTRAINT CK_sexo CHECK (sexo IN ('F', 'M')),
-                                 fechnac datetime)
+Create table administrador (idadmin int identity primary key, 
+			    apeynom varchar(50),
+			    viveahi varchar(1)  NULL default ('N') 
+			    CONSTRAINT CK_habitante_viveahi CHECK (viveahi IN ('S', 'N')),
+			    tel varchar(20),
+			    sexo varchar(1)  NOT NULL 
+			    CONSTRAINT CK_sexo CHECK (sexo IN ('F', 'M')),
+                            fechnac datetime)
 
 go
 -------------------
