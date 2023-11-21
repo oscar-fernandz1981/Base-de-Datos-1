@@ -10,7 +10,7 @@ CREATE NONCLUSTERED COLUMNSTORE INDEX IDX_gastoNew
 ON gastoNew(idprovincia, idlocalidad, idconsorcio, periodo, fechapago, idtipogasto, importe);
 
 --Elimina el indice IDX_gastoNEW de la tabla gastoNew
---DROP INDEX IDX_gastoNew ON gastoNew;
+  DROP INDEX IDX_gastoNew ON gastoNew;
 
 --Ver el contenido y la estructura de la tabla gastoNew.
 SELECT * FROM gastoNew;
