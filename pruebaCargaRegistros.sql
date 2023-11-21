@@ -37,35 +37,35 @@ go
 -------------------
 
 Create table administrador	(idadmin int identity primary key, 
-					     apeynom varchar(50),
-					     viveahi varchar(1)  NULL default ('N') 
-						 CONSTRAINT CK_habitante_viveahi CHECK (viveahi IN ('S', 'N')),
-					     tel varchar(20),
-					     sexo varchar(1)  NOT NULL 
-						 CONSTRAINT CK_sexo CHECK (sexo IN ('F', 'M')),
-                         fechnac datetime)
+				 apeynom varchar(50),
+				 viveahi varchar(1)  NULL default ('N') 
+				 CONSTRAINT CK_habitante_viveahi CHECK (viveahi IN ('S', 'N')),
+				 tel varchar(20),
+				 sexo varchar(1)  NOT NULL 
+				 CONSTRAINT CK_sexo CHECK (sexo IN ('F', 'M')),
+                                 fechnac datetime)
 
 go
 -------------------
 
 Create table tipogasto	(idtipogasto int primary key, 
-					    descripcion varchar(50))
+			 descripcion varchar(50))
 go
 -------------------
 
 Create table consorcio	(idprovincia int,
                          idlocalidad int,
                          idconsorcio int, 
-					     nombre varchar(50),
-					     direccion varchar(250),					     
-					     idzona int,	
-						 idconserje int,	
-						 idadmin int,	
-					     Constraint PK_consorcio PRIMARY KEY (idprovincia, idlocalidad,idconsorcio),
-						 Constraint FK_consorcio_pcia FOREIGN KEY (idprovincia,idlocalidad)  REFERENCES localidad(idprovincia,idlocalidad),
-						 Constraint FK_consorcio_zona FOREIGN KEY (idzona)  REFERENCES zona(idzona),						 					     					     					     				     					     
-						 Constraint FK_consorcio_conserje FOREIGN KEY (idconserje)  REFERENCES conserje(idconserje),
-						 Constraint FK_consorcio_admin FOREIGN KEY (idadmin)  REFERENCES administrador(idadmin)						 					     					     					     				     					     						 						 						 					     					     					     				     					     						 
+			 nombre varchar(50),
+			 direccion varchar(250),					     
+			 idzona int,	
+			 idconserje int,	
+			 idadmin int,	
+			 Constraint PK_consorcio PRIMARY KEY (idprovincia, idlocalidad,idconsorcio),
+			 Constraint FK_consorcio_pcia FOREIGN KEY (idprovincia,idlocalidad)  REFERENCES localidad(idprovincia,idlocalidad),
+			 Constraint FK_consorcio_zona FOREIGN KEY (idzona)  REFERENCES zona(idzona),						 					     					     					     				     					     
+			 Constraint FK_consorcio_conserje FOREIGN KEY (idconserje)  REFERENCES conserje(idconserje),
+			 Constraint FK_consorcio_admin FOREIGN KEY (idadmin)  REFERENCES administrador(idadmin)						 					     					     					     				     					     						 						 						 					     					     					     				     					     						 
 							)
 go
 -------------------
@@ -73,17 +73,17 @@ go
 
                          
 Create table gastoNew	(
-						idgastoNew int identity,
-						idprovincia int,
+			 idgastoNew int identity,
+			 idprovincia int,
                          idlocalidad int,
                          idconsorcio int, 
-					     periodo int,
-					     fechapago datetime,					     
-						 idtipogasto int,
-						 importe decimal (8,2),	
-					     Constraint PK_gastoNew PRIMARY KEY (idgastoNew),
-						 Constraint FK_gastoNew_consorcio FOREIGN KEY (idprovincia,idlocalidad,idconsorcio)  REFERENCES consorcio(idprovincia,idlocalidad,idconsorcio),
-						 Constraint FK_gastoNew_tipo FOREIGN KEY (idtipogasto)  REFERENCES tipogasto(idtipogasto)					     					     						 					     					     
+			 periodo int,
+			 fechapago datetime,					     
+			 idtipogasto int,
+			 importe decimal (8,2),	
+			 Constraint PK_gastoNew PRIMARY KEY (idgastoNew),
+			 Constraint FK_gastoNew_consorcio FOREIGN KEY (idprovincia,idlocalidad,idconsorcio)  REFERENCES consorcio(idprovincia,idlocalidad,idconsorcio),
+			 Constraint FK_gastoNew_tipo FOREIGN KEY (idtipogasto)  REFERENCES tipogasto(idtipogasto)					     					     						 					     					     
 							)
 go
 
@@ -109,7 +109,7 @@ CREATE TABLE #TempTable (ID INT, Nombre VARCHAR(50))
 DECLARE @Counter INT
 SET @Counter = 1
 
--- Definir el número total de registros a insertar (1 millón en este caso)
+-- Definir el nÃºmero total de registros a insertar (1 millÃ³n en este caso)
 DECLARE @TotalRecords INT
 SET @TotalRecords = 1000000
 
