@@ -1,18 +1,18 @@
 use base_consorcio;
 
-
+--creamos la tabla gastoNew
 Create table gastoNew	(
-						idgastoNew int identity,
-						idprovincia int,
+			 idgastoNew int identity,
+			 idprovincia int,
                          idlocalidad int,
                          idconsorcio int, 
-					     periodo int,
-					     fechapago datetime,					     
-						 idtipogasto int,
-						 importe decimal (8,2),	
-					     Constraint PK_gastoNew PRIMARY KEY (idgastoNew),
-						 Constraint FK_gastoNew_consorcio FOREIGN KEY (idprovincia,idlocalidad,idconsorcio)  REFERENCES consorcio(idprovincia,idlocalidad,idconsorcio),
-						 Constraint FK_gastoNew_tipo FOREIGN KEY (idtipogasto)  REFERENCES tipogasto(idtipogasto)					     					     						 					     					     
+			 periodo int,
+			 fechapago datetime,					     
+			 idtipogasto int,
+			 importe decimal (8,2),	
+			 Constraint PK_gastoNew PRIMARY KEY (idgastoNew),
+			 Constraint FK_gastoNew_consorcio FOREIGN KEY (idprovincia,idlocalidad,idconsorcio)  REFERENCES consorcio(idprovincia,idlocalidad,idconsorcio),
+			 Constraint FK_gastoNew_tipo FOREIGN KEY (idtipogasto)  REFERENCES tipogasto(idtipogasto)					     					     						 					     					     
 							)
 go
 
@@ -25,11 +25,11 @@ go
 
 --select * from gastoNew;
 
-/*declare @tamanioLote int = 1000; -- Tamaño del lote
-declare @cont int = 1;     -- Contador de lotes
+/*declare @tamanioLote int = 1000; -- TamaÃ±o del lote
+declare @cont int = 1; -- Contador de lotes
 
--- Inicia un bucle para la inserción por lotes
-while @cont <= 1000000 -- Cambia 1000 por el número de lotes necesarios para un millón de registros
+-- Inicia un bucle para la inserciÃ³n por lotes
+while @cont <= 1000000 -- Cambia 1000 por el nÃºmero de lotes necesarios para un millÃ³n de registros
 begin
     insert into gastoNew (idprovincia, idlocalidad, idconsorcio, periodo, fechapago, idtipogasto, importe)
     select top (@tamanioLote) idprovincia, idlocalidad, idconsorcio, periodo, fechapago, idtipogasto, importe
@@ -41,12 +41,12 @@ end;
 
 
 
--- Declarar el tamaño del lote y el contador
-DECLARE @BatchSize INT = 1000; -- Tamaño del lote
+-- Declarar el tamaÃ±o del lote y el contador
+DECLARE @BatchSize INT = 1000; -- TamaÃ±o del lote
 DECLARE @Counter INT = 1;     -- Contador de lotes
 
--- Iniciar un bucle para la inserción por lotes
-WHILE @Counter <= 1000000 -- Cambia 1000 al número de lotes necesarios para un millón de registros
+-- Iniciar un bucle para la inserciÃ³n por lotes
+WHILE @Counter <= 1000000 -- Cambia 1000 al nÃºmero de lotes necesarios para un millÃ³n de registros
 BEGIN
     -- Insertar registros desde gasto a gastoNew en lotes
     INSERT INTO gastoNew (idprovincia, idlocalidad, idconsorcio, periodo, fechapago, idtipogasto, importe)
@@ -62,7 +62,7 @@ select idprovincia, idlocalidad, idconsorcio, periodo, fechapago, idtipogasto, i
 from gasto
 order by idgasto
 offset 0 rows
-fetch next 1000000 rows only; -- Ajusta el tamaño del lote según tus necesidades*/
+fetch next 1000000 rows only; -- Ajusta el tamaÃ±o del lote segÃºn tus necesidades*/
 
 INSERT INTO gastoNew (idprovincia, idlocalidad, idconsorcio, periodo, fechapago, idtipogasto, importe)
 SELECT idprovincia, idlocalidad, idconsorcio, periodo, fechapago, idtipogasto, importe
@@ -71,5 +71,5 @@ FROM (
            ROW_NUMBER() OVER (ORDER BY idgasto) AS RowNumber
     FROM gasto
 ) AS Subquery
-WHERE RowNumber BETWEEN 1 AND 1000000; -- Ajusta el tamaño del lote según tus necesidades
+WHERE RowNumber BETWEEN 1 AND 1000000; -- Ajusta el tamaÃ±o del lote segÃºn tus necesidades
 
