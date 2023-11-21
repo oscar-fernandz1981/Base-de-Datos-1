@@ -23,12 +23,12 @@ y la tabla a la que pertenecen.
 
 Por ejemplo, para crear un índice columnar no agrupado en una columna llamada "NombreDeTuColumna" de una tabla "NombreDeTuTabla", 
 se puede utilizar el siguiente comando:
- ____________________________________________________________
-|                                                            |
-| CREATE NONCLUSTERED COLUMNSTORE INDEX IX_NombreDeTuColumna |
-|                                                            |
-| ON NombreDeTuTabla (NombreDeTuColumna);                    |
-|____________________________________________________________|
+
+
+    CREATE NONCLUSTERED COLUMNSTORE INDEX IX_NombreDeTuColumna
+
+    ON NombreDeTuTabla (NombreDeTuColumna);
+
 
 Esto crea un índice columnar no agrupado en la columna NombreDeTuColumna la tabla NombreDeTuTabla, lo que permite una mejor optimización 
 para consultas que involucran esa columna en particular.
