@@ -18,7 +18,7 @@ set @sql = 'backup database '+@bd +' to disk='+char(39)+'C:\copiasSeguridad\'+@n
 exec(@sql);
 go
  
-copiaBD 'base_consorcio','nombreCopiaSeguridad'; /*creamos BACKUP median el uso del procedure*/  
+copiaBD 'base_consorcio','CopiaSeguridad20112023'; /*creamos BACKUP median el uso del procedure*/  
 go
 
 
@@ -46,26 +46,26 @@ SELECT name, recovery_model_desc
 FROM sys.databases
 WHERE name = 'base_consorcio';
 
---sys.databases= contiene informaciÛn sobre todas las bases de datos
+--sys.databases= contiene informaci√≥n sobre todas las bases de datos
 --cambiamos el modelo de recupeacion a full
 
 ALTER DATABASE base_consorcio SET RECOVERY FULL;
 /*modos de backup 
 
 
-Simple: Elimina autom·ticamente los registros de transacciones una vez 
+Simple: Elimina autom√°ticamente los registros de transacciones una vez 
 completadas las operaciones; no permite backups de registros de transacciones 
-individuales, ideal para bases de datos donde la pÈrdida de datos no es crÌtica
+individuales, ideal para bases de datos donde la p√©rdida de datos no es cr√≠tica
  y se prioriza el rendimiento.
 
-Bulk Logged: Registra operaciones masivas mÌnimamente para reducir el tamaÒo 
-del registro; permite backups de registros de transacciones, ˙til para operaciones 
+Bulk Logged: Registra operaciones masivas m√≠nimamente para reducir el tama√±o 
+del registro; permite backups de registros de transacciones, √∫til para operaciones 
 masivas, pero las restauraciones pueden requerir consideraciones adicionales debido 
-a las operaciones masivas registradas mÌnimamente.
+a las operaciones masivas registradas m√≠nimamente.
 
 Full: Registra todas las operaciones en el registro de transacciones; permite backups 
-de registros de transacciones para restauraciones a puntos especÌficos en el tiempo,
- proporciona m·xima protecciÛn de datos, pero requiere una gestiÛn cuidadosa del espacio
+de registros de transacciones para restauraciones a puntos espec√≠ficos en el tiempo,
+ proporciona m√°xima protecci√≥n de datos, pero requiere una gesti√≥n cuidadosa del espacio
   del registro para evitar el crecimiento excesivo.*/
 
 -- backup log registros
@@ -80,13 +80,13 @@ use master -- usamos base de datos master pq no debe estar en uso la bd que vamo
 RESTORE DATABASE base_consorcio
 FROM DISK = 'C:\copiasSeguridad\backup_baseDatos.bak'
 WITH REPLACE, NORECOVERY;
-/*NORECOVERY=  Esto permite restaurar m·s archivos de copia de seguridad ya que la base de datos no estar· disponible para su uso despuÈs de la restauraciÛn*/
+/*NORECOVERY=  Esto permite restaurar m√°s archivos de copia de seguridad ya que la base de datos no estar√° disponible para su uso despu√©s de la restauraci√≥n*/
 
 go
 RESTORE LOG base_consorcio
 FROM DISK = 'C:\copiasSeguridad\registrosBackup.trn'
 WITH RECOVERY;
 
-/*RECOVERY = DespuÈs de esta operaciÛn, la base de datos estar· disponible y se permitir·n operaciones de lectura y escritura en ella.*/
+/*RECOVERY = Despu√©s de esta operaci√≥n, la base de datos estar√° disponible y se permitir√°n operaciones de lectura y escritura en ella.*/
 
 
