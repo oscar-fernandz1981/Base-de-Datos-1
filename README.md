@@ -26,6 +26,7 @@ se puede utilizar el siguiente comando:
  ____________________________________________________________
 |                                                            |
 | CREATE NONCLUSTERED COLUMNSTORE INDEX IX_NombreDeTuColumna |
+|                                                            |
 | ON NombreDeTuTabla (NombreDeTuColumna);                    |
 |____________________________________________________________|
 
