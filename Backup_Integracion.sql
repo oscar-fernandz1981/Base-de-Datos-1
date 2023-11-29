@@ -19,7 +19,7 @@ exec(@sql);
 go
  
 copiaBD 'base_consorcio','CopiaSeguridad20112023'; /*creamos BACKUP median el uso del procedure*/  
-go
+
 
 
 /*creamos los backup*/
@@ -29,7 +29,7 @@ go
 /*WITH FORMAT, INIT;: Son opciones adicionales para la copia de seguridad
 FORMAT sobreescribe cualquier copia de seguridad existente
 */
-
+go
 BACKUP DATABASE base_consorcio
 TO DISK = 'C:\copiasSeguridad\backup_baseDatos.bak'
 WITH FORMAT, INIT;
